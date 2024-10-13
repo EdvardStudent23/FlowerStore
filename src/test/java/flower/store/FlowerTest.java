@@ -25,9 +25,39 @@ public class FlowerTest {
     }
 
     @Test
+    public void testNegativePrice() {
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            flower.setPrice(-34);
+        });
+        Assertions.assertEquals("Price mustn`t be negative", exception.getMessage(), "Should throw exception for negative price");
+    }
+
+    @Test
+    public void testNegativeLength() {
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            flower.setSepalLength(-35.6);
+        });
+        Assertions.assertEquals("Sepal length mustn`t be negative", exception.getMessage(), "Should throw exception for negative sepal length");
+    }
+
+    @Test
+    public void SetSepalLength() {
+        flower.setSepalLength(6.6);
+        Assertions.assertEquals(6.6, flower.getSepalLength(), "Sepal length should be set correctly");
+    }
+
+
+    @Test
     public void testColor() {
         FlowerColor color = FlowerColor.RED;
         flower.setColor(color);
         Assertions.assertEquals("#FF0000", flower.getColor());
     }
+
+    @Test
+    public void testSetAndGetFlowerType() {
+        flower.setFlowerType(FlowerType.ROSE);
+        Assertions.assertEquals(FlowerType.ROSE, flower.getFlowerType(), "Flower type should be set correctly");
+    }
 }
+
